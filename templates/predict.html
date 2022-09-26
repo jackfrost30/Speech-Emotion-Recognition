@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Prediction</title>
+<style>
+    /* Add some padding on document's body to prevent the content
+    to go underneath the header and footer */
+
+    .center {
+    margin: auto;
+    width: 60%;
+    
+    padding: 10px;
+    }
+    body{        
+        padding-top: 60px;
+        padding-bottom: 40px;
+    }
+    .fixed-header, .fixed-footer{
+        width: 100%;
+        position: fixed;        
+        background: #333;
+        padding: 10px 0;
+        color: #fff;
+    }
+    .fixed-header{
+        top: 0;
+    }
+    .fixed-footer{
+        bottom: 0;
+    }
+    .container{
+        width: 80%;
+        margin: 0 auto; /* Center the DIV horizontally */
+    }
+    nav a{
+        color: #fff;
+        text-decoration: none;
+        padding: 7px 25px;
+        display: inline-block;
+    }
+    input[type=file]::file-selector-button {
+        border: 2px solid #6c5ce7;
+        padding: .2em .4em;
+        
+        border-radius: .2em;
+        background-color: #a29bfe;
+        transition: 1s;
+    }
+    input[type=file]::file-selector-button:hover {
+        background-color: #81ecec;
+        border: 2px solid #00cec9;
+    }
+    input[type=submit] {
+        width: 75px;
+    height: 50px;
+    border: none;
+    outline: none;
+    background: #2f2f2f;
+    color: #fff;
+    font-size: 14px;
+    border-radius: 40px;
+    text-align: center;
+    box-shadow: 0 6px 20px -5px rgba(0,0,0,0.4);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    }
+    
+    .flex {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
+</head>
+<body>
+    <div class="fixed-header">
+        <div class="container">
+            <nav>
+                <a href="/">Home</a>
+                
+            </nav>
+        </div>
+    </div>
+    <div class="center" >
+        <h2>Upload an Audio File to Predict the Emotion</h2> <br> 
+        <form action="/predict" method="post" enctype="multipart/form-data" class="form-control-flex">
+            <label for="myFile"> </label>
+            <input type="file" id="myFile" name="filename" required> <br> <br> <br>
+            <input type="submit">
+          </form>
+          <br> <br> <br> <br> <br> <br>
+          {% if emotion %}
+            <div> <h3>The Predicted Emotion is: {{ emotion }} </div></h3>
+            <h3> The Accuracy is: {{ "{:.2f}%".format(accuracy*100) }}</h3>
+
+
+            
+          {% endif %}
+    </div>    
+    <div class="fixed-footer">
+        <div class="container">Copyright &copy; Malla Reddy College of Engineering and Technology</div>        
+    </div>
+</body>
+</html>
